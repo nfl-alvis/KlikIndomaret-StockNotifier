@@ -171,7 +171,7 @@ The [`.github/workflows/stock-notifier.yml`](.github/workflows/stock-notifier.ym
 Notes:
 
 - The token **never lives in the code** — `config.json` in the repo intentionally contains no secrets; secrets are injected as env vars during runs.
-- `state.json` is re-committed automatically on every run (commit message `[skip ci]`), so stock-transition detection stays connected across runs. State commits also count as repo activity, so GitHub's 60-day cron deactivation rule never kicks in.
+- `state.json` is re-committed automatically **only when a product's status, price, or discount actually changes** (`[skip ci]` commit message), so stock-transition detection stays connected across runs without flooding the commit history. Those state commits also count as repo activity, so GitHub's 60-day cron deactivation rule never kicks in.
 - The default interval `*/5` minutes is GitHub Actions' minimum. To stay **free**, the repo must be **public** (unlimited minutes). Private repos only get 2,000 free minutes/month while `*/5` needs ~8,800 (excess billed at ~$0.008/min) — if you keep it private, switch to `*/30`.
 - GitHub's cron is *best-effort*: during peak hours runs can be queued and delayed, so the effective gap sometimes stretches to 5–15 minutes. If you need truly consistent 5-minute checks, run `python main.py watch` on a small server/VPS instead.
 - The polling pattern stays gentle: each run makes only 1 request per product with pauses between requests, plus automatic backoff if Cloudflare starts pushing back.

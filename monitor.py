@@ -144,7 +144,8 @@ def check_once(cfg: Dict[str, Any], client: KlikIndomaretClient, tg: Dict[str, s
         if new_discount and not price_drop and "discount" in notify_on:
             messages.append(format_message("discount", current, prev, cfg))
 
-        # simpan kondisi terbaru
+        # simpan kondisi terbaru — hanya field yang berubah maknanya,
+        # agar state.json stabil antar-run (tidak bikin commit tiap siklus)
         state["products"][plu or permalink] = {
             "status": now_status,
             "price": current.price if current else prev.get("price"),
@@ -152,7 +153,6 @@ def check_once(cfg: Dict[str, Any], client: KlikIndomaretClient, tg: Dict[str, s
             "discount_text": current.discount_text if current else prev.get("discount_text"),
             "name": name,
             "selling": current.selling if current else None,
-            "checked_at": time.strftime("%Y-%m-%d %H:%M:%S"),
         }
         save_state(state)
 
