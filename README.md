@@ -1,48 +1,48 @@
 # StockNotifier KlikIndomaret 🛒➡️📣
 
-Notifikasi **Telegram** saat produk di [klikindomaret.com](https://www.klikindomaret.com) masuk kembali stok ("barang masuk"), habis, atau harganya turun.
+Telegram notifications when products come back in stock ("barang masuk"), go out of stock, or drop in price on [klikindomaret.com](https://www.klikindomaret.com).
 
-Hasil reverse engineering API KlikIndomaret (web + APK Android) dan implementasi poller-nya — tanpa perlu login akun, cukup endpoint publik.
+This is the result of reverse engineering the KlikIndomaret API (web + Android APK) plus its poller implementation — no account login needed, only public endpoints.
 
 ---
 
-## Hasil Reverse Engineering
+## Reverse Engineering Findings
 
-### Arsitektur
+### Architecture
 
-Frontend `www.klikindomaret.com` = beberapa sub-aplikasi Next.js (`assets-klikidmcore`, `assets-klikidmgroceries`, `assets-klikidmsearch`, `assets-klikidmorder`, `assets-klikidmauth`, `assets-klikidmprofile`). Semua data produk diambil dari **API gateway**:
+The `www.klikindomaret.com` frontend consists of several Next.js sub-apps (`assets-klikidmcore`, `assets-klikidmgroceries`, `assets-klikidmsearch`, `assets-klikidmorder`, `assets-klikidmauth`, `assets-klikidmprofile`). All product data comes from a single **API gateway**:
 
 ```
 https://ap-mc.klikindomaret.com/assets-klikidm{svc}/api/get/catalog-xpress/api/webapp/{endpoint}
 ```
 
-- Frontend dilindungi AWS WAF + Cloudflare (JS challenge).
-- **API gateway-nya bisa diakses langsung** (tanpa cookie/WAF token) selama frekuensi request wajar — pola URL dibaca dari trafik browser, bukan dari APK (string API di APK ter-obfuscate R8).
+- The frontend is protected by AWS WAF + Cloudflare (JS challenge).
+- **The API gateway itself is directly accessible** (no cookies/WAF token needed) as long as the request frequency stays reasonable — the URL patterns were read from browser traffic, not from the APK (API strings inside the APK are obfuscated by R8).
 
-### Endpoint yang ditemukan
+### Discovered endpoints
 
-| Fungsi | Service | Endpoint |
+| Purpose | Service | Endpoint |
 |---|---|---|
-| Cari/daftar produk (mendukung `keyword` = nama maupun **PLU**) | `klikidmcore` | `search/result` |
-| Detail produk (halaman PDP) | `klikidmgroceries` | `product/detail-page` |
-| Produk terkait | `klikidmgroceries` | `product/related-product` |
-| Saran pencarian | `klikidmsearch` | `search/suggestion` |
-| Konfigurasi pencarian | `klikidmorder` | `search/configuration` |
-| Daftar toko per area | `klikidmorder` | `stores/search` |
-| Kategori | `klikidmgroceries` | `category/meta` |
-| Section beranda | `klikidmcore` | `home/webapp/xpress/api/mobile/section` |
+| Search / list products (`keyword` accepts names **and PLU**) | `klikidmcore` | `search/result` |
+| Product detail (PDP page) | `klikidmgroceries` | `product/detail-page` |
+| Related products | `klikidmgroceries` | `product/related-product` |
+| Search suggestions | `klikidmsearch` | `search/suggestion` |
+| Search configuration | `klikidmorder` | `search/configuration` |
+| Store list per area | `klikidmorder` | `stores/search` |
+| Categories | `klikidmgroceries` | `category/meta` |
+| Home sections | `klikidmcore` | `home/webapp/xpress/api/mobile/section` |
 
-### Contoh: cek produk by PLU
+### Example: check a product by PLU
 
 ```bash
 curl "https://ap-mc.klikindomaret.com/assets-klikidmcore/api/get/catalog-xpress/api/webapp/search/result?page=0&size=5&categories=&keyword=20143793&storeCode=TJKT&latitude=-6.1763897&longitude=106.82667&mode=DELIVERY&districtId=141100100"
 ```
 
-Respon (ringkas):
+Response (abridged):
 
 ```json
 {
-  "status": "00",                       // "00" = sukses
+  "status": "00",                       // "00" = success
   "data": {
     "totalElements": 1,
     "content": [{
@@ -52,7 +52,7 @@ Respon (ringkas):
       "price": 38700,
       "finalPrice": 19350,
       "discountText": "50%",
-      "selling": true,                  // ← flag ketersediaan utama
+      "selling": true,                  // ← main availability flag
       "imageUrl": "https://cdn-klik.klikindomaret.com/klik-catalog/product/20143793_1.jpg",
       "uom": "PCS (1 pcs)"
     }]
@@ -60,64 +60,64 @@ Respon (ringkas):
 }
 ```
 
-Parameter wajib: `storeCode` (kode toko), `districtId` (kelurahan/kecamatan), `latitude`/`longitude`, `mode` (`DELIVERY`/`PICKUP`).
+Required parameters: `storeCode` (store code), `districtId` (district), `latitude`/`longitude`, `mode` (`DELIVERY`/`PICKUP`).
 
-### URL halaman produk
+### Product page URL
 
 ```
 https://www.klikindomaret.com/xpress/{permalink}
-https://www.klikindomaret.com/xpress/{PLU}      # redirect 307 ke permalink
+https://www.klikindomaret.com/xpress/{PLU}      # 307-redirects to the permalink URL
 ```
 
-### Catatan anti-bot
+### Anti-bot notes
 
-Request beruntun tanpa jeda memicu Cloudflare 403. Poller ini menjaga jeda minimum antar request (`request_delay_seconds`), interval polling wajar (`interval_seconds` + jitter acak), dan backoff otomatis saat mulai gagal.
+Burst requests without pauses trigger a Cloudflare 403. This poller enforces a minimum pause between requests (`request_delay_seconds`), a reasonable polling interval (`interval_seconds` + random jitter), and automatic backoff when failures start.
 
 ---
 
-## Cara Pakai
+## Usage
 
-### 1. Instalasi
+### 1. Install
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Buat bot Telegram
+### 2. Create the Telegram bot
 
-1. Chat [@BotFather](https://t.me/BotFather) → `/newbot` → ikuti langkahnya → salin **token** (`123456:ABC-...`).
-2. Cari **chat id**: kirim pesan apa saja ke bot Anda, lalu buka
-   `https://api.telegram.org/bot<TOKEN>/getUpdates` → lihat `"chat":{"id": 123456789}`.
-   (Alternatif: chat [@userinfobot](https://t.me/userinfobot).)
-3. **Penting**: kirim minimal 1 pesan `/start` ke bot Anda, kalau tidak bot tidak bisa mengirim ke Anda.
+1. Chat [@BotFather](https://t.me/BotFather) → `/newbot` → follow the steps → copy the **token** (`123456:ABC-...`).
+2. Find your **chat id**: send any message to your bot, then open
+   `https://api.telegram.org/bot<TOKEN>/getUpdates` → look for `"chat":{"id": 123456789}`.
+   (Alternative: chat [@userinfobot](https://t.me/userinfobot).)
+3. **Important**: send `/start` to your bot at least once, otherwise it cannot message you.
 
-### 3. Konfigurasi
+### 3. Configure
 
 ```bash
-copy config.example.json config.json   # Windows (atau: cp)
+copy config.example.json config.json   # Windows (or: cp)
 ```
 
-Isi `telegram.bot_token` dan `telegram.chat_id` di `config.json` — **atau** biarkan kosong dan set env var `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` (cara ini yang dipakai GitHub Actions). Atur `store` sesuai lokasi Anda (lihat `python main.py stores`), dan `notify_on` untuk memilih jenis notifikasi.
+Fill in `telegram.bot_token` and `telegram.chat_id` in `config.json` — **or** leave them empty and set the `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` environment variables instead (this is what the GitHub Actions workflow uses). Adjust `store` to your location (see `python main.py stores`), and `notify_on` to choose which notifications you want.
 
-### 4. Isi watchlist
+### 4. Build your watchlist
 
 ```bash
 python main.py add 20143793                                  # by PLU
-python main.py add "energen cokelat" --index 0               # by kata kunci
+python main.py add "energen cokelat" --index 0               # by keyword
 python main.py add https://www.klikindomaret.com/xpress/...  # by URL
 python main.py list
 python main.py remove 20143793
 ```
 
-### 5. Jalankan
+### 5. Run
 
 ```bash
-python main.py test-telegram   # sekali, untuk memastikan bot jalan
-python main.py check           # cek satu siklus, tampilkan hasil
-python main.py watch           # mode utama: pantau terus-menerus
+python main.py test-telegram   # once, to verify the bot works
+python main.py check           # single check cycle, prints results
+python main.py watch           # main mode: monitor continuously
 ```
 
-Contoh notifikasi:
+Example notification (actual bot output is in Indonesian):
 
 ```
 🟢 BARANG MASUK!
@@ -131,26 +131,26 @@ Contoh notifikasi:
 🔢 PLU: 20143793
 ```
 
-### Deteksi "barang masuk"
+### How "back in stock" detection works
 
-Per produk disimpan status terakhir di `state.json`. Notifikasi terkirim saat transisi:
+The last known status of each product is stored in `state.json`. Notifications are sent on transitions:
 
-| Sebelum | Sesudah | Notifikasi |
+| Before | After | Notification |
 |---|---|---|
-| tidak tersedia (`selling:false`/hilang) | `selling:true` | 🟢 **barang masuk** |
-| tersedia | habis/hilang | 🔴 stok habis (opsional) |
-| harga lebih tinggi | harga turun | 💰 harga turun |
-| tanpa diskon | ada diskon | 🏷️ diskon baru |
+| unavailable (`selling:false`/missing) | `selling:true` | 🟢 **back in stock** |
+| available | out of stock/missing | 🔴 out of stock (optional) |
+| higher price | price drop | 💰 price drop |
+| no discount | discount appears | 🏷️ new discount |
 
-> Siklus pertama hanya menyimpan baseline — notifikasi mulai dari perubahan kedua dst.
+> The first cycle only records a baseline — notifications start from the second change onward.
 
 ---
 
-## Menjalankan 24/7 via GitHub Actions (tanpa PC nyala)
+## Running 24/7 with GitHub Actions (no PC needed)
 
-Workflow [`.github/workflows/stock-notifier.yml`](.github/workflows/stock-notifier.yml) menjalankan `python main.py check` tiap 30 menit di server GitHub, mengirim notifikasi Telegram, lalu menyimpan `state.json` kembali ke repo — laptop bisa mati total.
+The [`.github/workflows/stock-notifier.yml`](.github/workflows/stock-notifier.yml) workflow runs `python main.py check` every 5 minutes on GitHub's servers, sends the Telegram notification, then commits `state.json` back to the repo — your laptop can be completely off.
 
-1. Buat repo GitHub (boleh **private**) dan push folder ini:
+1. Create a GitHub repo (**public recommended**, see quota notes) and push this folder:
 
    ```bash
    git init -b main
@@ -160,38 +160,38 @@ Workflow [`.github/workflows/stock-notifier.yml`](.github/workflows/stock-notifi
    git push -u origin main
    ```
 
-2. Tambahkan **2 secrets** — Settings → Secrets and variables → Actions → *New repository secret*:
-   - `TELEGRAM_BOT_TOKEN` → token dari BotFather
-   - `TELEGRAM_CHAT_ID` → chat id Anda
+2. Add **2 secrets** — Settings → Secrets and variables → Actions → *New repository secret*:
+   - `TELEGRAM_BOT_TOKEN` → token from BotFather
+   - `TELEGRAM_CHAT_ID` → your chat id
 
-   Atau lewat CLI: `gh secret set TELEGRAM_BOT_TOKEN` lalu `gh secret set TELEGRAM_CHAT_ID`.
+   Or via CLI: `gh secret set TELEGRAM_BOT_TOKEN` then `gh secret set TELEGRAM_CHAT_ID`.
 
-3. Tab **Actions** → pilih **Stock Notifier** → **Run workflow** untuk uji manual. Setelah itu cron berjalan sendiri tiap 30 menit.
+3. **Actions** tab → pick **Stock Notifier** → **Run workflow** to test manually. After that, the cron runs on its own every 5 minutes.
 
-Catatan:
+Notes:
 
-- Token **tidak pernah ikut dalam kode** — `config.json` di repo sengaja tanpa rahasia; secrets disuntik sebagai env var saat run.
-- `state.json` di-commit ulang otomatis tiap run (pesan `[skip ci]`), jadi deteksi transisi stok tersambung antar-run. Perubahan state juga dihitung sebagai aktivitas repo, sehingga cron tidak dinonaktifkan aturan 60-hari GitHub.
-- Interval default `*/5` menit = minimum GitHub Actions. Agar tetap **gratis**, repo harus **public** (kuota menit tak terbatas). Repo private hanya dapat 2.000 menit/bulan, sedangkan `*/5` butuh ±8.800 menit/bulan (sisanya ±$0.008/menit) — kalau tetap private, pakai `*/30`.
-- Jadwal cron GitHub bersifat *best-effort*: pada jam sibuk run bisa tertunda antrean, jadi jeda efektif kadang melebar jadi 5–15 menit. Kalau butuh 5 menit yang konsisten, jalankan `python main.py watch` di server/VPS kecil sebagai gantinya.
-- Pola polling tetap ramah: tiap run hanya 1 request per produk dengan jeda, dan backoff otomatis kalau Cloudflare mulai menolak.
-- Tambah produk saat berjalan di Actions: edit `config.json` (tambah produk), push — siklus berikutnya langsung memantau.
+- The token **never lives in the code** — `config.json` in the repo intentionally contains no secrets; secrets are injected as env vars during runs.
+- `state.json` is re-committed automatically on every run (commit message `[skip ci]`), so stock-transition detection stays connected across runs. State commits also count as repo activity, so GitHub's 60-day cron deactivation rule never kicks in.
+- The default interval `*/5` minutes is GitHub Actions' minimum. To stay **free**, the repo must be **public** (unlimited minutes). Private repos only get 2,000 free minutes/month while `*/5` needs ~8,800 (excess billed at ~$0.008/min) — if you keep it private, switch to `*/30`.
+- GitHub's cron is *best-effort*: during peak hours runs can be queued and delayed, so the effective gap sometimes stretches to 5–15 minutes. If you need truly consistent 5-minute checks, run `python main.py watch` on a small server/VPS instead.
+- The polling pattern stays gentle: each run makes only 1 request per product with pauses between requests, plus automatic backoff if Cloudflare starts pushing back.
+- Adding products while running on Actions: edit `config.json` (add the product), push — the next cycle picks it up.
 
 ---
 
-## Struktur Proyek
+## Project Structure
 
 ```
 main.py             CLI (watch/check/add/list/remove/test-telegram/stores)
-klikidm.py          Klien API KlikIndomaret (search/result, detail-page, stores)
-monitor.py          Loop polling, deteksi transisi stok/harga, format pesan
-telegram_notify.py  Pengirim pesan Telegram Bot API
-.github/workflows/  Workflow GitHub Actions (cek berkala + commit state)
-config.json         Watchlist + pengaturan (ikut repo, TANPA rahasia di dalamnya)
-state.json          Status terakhir per produk (ikut repo agar CI tersambung)
+klikidm.py          KlikIndomaret API client (search/result, detail-page, stores)
+monitor.py          Polling loop, stock/price transition detection, message formatting
+telegram_notify.py  Telegram Bot API message sender
+.github/workflows/  GitHub Actions workflow (scheduled checks + state commit)
+config.json         Watchlist + settings (committed to the repo, contains NO secrets)
+state.json          Last known status per product (committed so CI stays in sync)
 ```
 
-## Catatan
+## Notes
 
-- Gunakan secara wajar untuk kebutuhan pribadi; interval polling default 5 menit ± jitter, 1 request per produk per siklus. Jangan dikecilkan terlalu agresif — Cloudflare akan menolak dan IP bisa dikunci sementara.
-- Struktur API dapat berubah sewaktu-waktu oleh Indomaret; jika tiba-tiba semua gagal, cek kembali pola endpoint di atas lewat DevTools browser (tab Network, filter `ap-mc`).
+- Use it fairly and for personal needs; the default polling interval is 5 minutes (GitHub Actions) with 1 request per product per cycle. Don't crank it down aggressively — Cloudflare will reject and may temporarily lock your IP.
+- The API structure can change at any time without notice; if everything suddenly fails, re-check the endpoint patterns above via browser DevTools (Network tab, filter `ap-mc`).
