@@ -7,6 +7,30 @@
       "discount_text": "50%",
       "name": "Indomaret Food Container 640mL",
       "selling": true
+    },
+    "20142264": {
+      "status": "available",
+      "price": 74500,
+      "final_price": 37250,
+      "discount_text": "50%",
+      "name": "Lahap Lele Beras Premium 5Kg",
+      "selling": true
+    },
+    "20143145": {
+      "status": "available",
+      "price": 149000,
+      "final_price": 74500,
+      "discount_text": "50%",
+      "name": "Lahap Lele Beras Premium 10Kg",
+      "selling": true
+    },
+    "20016512": {
+      "status": "available",
+      "price": 46000,
+      "final_price": 23000,
+      "discount_text": "50%",
+      "name": "Sunco Minyak Goreng 2L",
+      "selling": true
     }
   }
 }
