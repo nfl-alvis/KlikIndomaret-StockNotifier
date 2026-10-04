@@ -1,0 +1,27 @@
+{
+  "telegram": {
+    "bot_token": "",
+    "chat_id": ""
+  },
+  "polling": {
+    "interval_seconds": 300,
+    "jitter_seconds": 60,
+    "request_delay_seconds": 3
+  },
+  "store": {
+    "storeCode": "TJKT",
+    "districtId": "141100100",
+    "latitude": -6.1763897,
+    "longitude": 106.82667,
+    "mode": "DELIVERY"
+  },
+  "notify_on": ["in_stock", "out_of_stock", "price_drop", "discount"],
+  "products": [
+    {
+      "plu": "20143793",
+      "permalink": "indomaret-indomaret-food-container-pcs-640-ml",
+      "name": "Indomaret Food Container 640mL",
+      "url": "https://www.klikindomaret.com/xpress/indomaret-indomaret-food-container-pcs-640-ml"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "products": {
+    "20143793": {
+      "status": "available",
+      "price": 38700,
+      "final_price": 19350,
+      "discount_text": "50%",
+      "name": "Indomaret Food Container 640mL",
+      "selling": true,
+      "checked_at": "2026-10-04 17:58:42"
+    }
+  }
+}
