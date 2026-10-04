@@ -172,7 +172,9 @@ Catatan:
 
 - Token **tidak pernah ikut dalam kode** — `config.json` di repo sengaja tanpa rahasia; secrets disuntik sebagai env var saat run.
 - `state.json` di-commit ulang otomatis tiap run (pesan `[skip ci]`), jadi deteksi transisi stok tersambung antar-run. Perubahan state juga dihitung sebagai aktivitas repo, sehingga cron tidak dinonaktifkan aturan 60-hari GitHub.
-- Interval default `*/30` menit agar kuota gratis repo private aman (±1450 menit/bulan dari 2000). Repo **public** bebas kuota — boleh diganti `*/15 * * * *`.
+- Interval default `*/5` menit = minimum GitHub Actions. Agar tetap **gratis**, repo harus **public** (kuota menit tak terbatas). Repo private hanya dapat 2.000 menit/bulan, sedangkan `*/5` butuh ±8.800 menit/bulan (sisanya ±$0.008/menit) — kalau tetap private, pakai `*/30`.
+- Jadwal cron GitHub bersifat *best-effort*: pada jam sibuk run bisa tertunda antrean, jadi jeda efektif kadang melebar jadi 5–15 menit. Kalau butuh 5 menit yang konsisten, jalankan `python main.py watch` di server/VPS kecil sebagai gantinya.
+- Pola polling tetap ramah: tiap run hanya 1 request per produk dengan jeda, dan backoff otomatis kalau Cloudflare mulai menolak.
 - Tambah produk saat berjalan di Actions: edit `config.json` (tambah produk), push — siklus berikutnya langsung memantau.
 
 ---
