@@ -18,10 +18,22 @@
   "notify_on": ["in_stock", "out_of_stock", "price_drop", "discount"],
   "products": [
     {
-      "plu": "20143793",
-      "permalink": "indomaret-indomaret-food-container-pcs-640-ml",
-      "name": "Indomaret Food Container 640mL",
-      "url": "https://www.klikindomaret.com/xpress/indomaret-indomaret-food-container-pcs-640-ml"
+      "plu": "20142264",
+      "permalink": "lahap-lele-lahap-lele-beras-premium-karung-sak-5kg",
+      "name": "Lahap Lele Beras Premium 5Kg",
+      "url": "https://www.klikindomaret.com/xpress/lahap-lele-lahap-lele-beras-premium-karung-sak-5kg"
+    },
+    {
+      "plu": "20143145",
+      "permalink": "lahap-lele-lahap-lele-beras-premium-sak-10kg",
+      "name": "Lahap Lele Beras Premium 10Kg",
+      "url": "https://www.klikindomaret.com/xpress/lahap-lele-lahap-lele-beras-premium-sak-10kg"
+    },
+    {
+      "plu": "20016512",
+      "permalink": "sunco-sunco-minyak-goreng-pch-2l",
+      "name": "Sunco Minyak Goreng 2L",
+      "url": "https://www.klikindomaret.com/xpress/sunco-sunco-minyak-goreng-pch-2l"
     }
   ]
 }

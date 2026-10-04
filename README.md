@@ -146,11 +146,13 @@ The last known status of each product is stored in `state.json`. Notifications a
 
 ---
 
-## Running 24/7 with GitHub Actions (no PC needed)
+## Running 24/7 — GitHub Actions + cron-job.org (no PC needed)
 
-The [`.github/workflows/stock-notifier.yml`](.github/workflows/stock-notifier.yml) workflow runs `python main.py check` every 5 minutes on GitHub's servers, sends the Telegram notification, then commits `state.json` back to the repo — your laptop can be completely off.
+The workflow runs `python main.py check` on GitHub's servers, sends the Telegram notification, then commits `state.json` back to the repo — your laptop can be completely off.
 
-1. Create a GitHub repo (**public recommended**, see quota notes) and push this folder:
+The trigger is **cron-job.org** calling GitHub's dispatch API every 5 minutes. (GitHub's own cron scheduler is *best-effort* and proved unreliable here — it never fired for hours — so the internal `schedule` block was removed and `workflow_dispatch` is the single entry point, triggered either manually or by the external cron.)
+
+1. Push this folder to a GitHub repo (**public recommended** — free unlimited Actions minutes):
 
    ```bash
    git init -b main
@@ -164,18 +166,36 @@ The [`.github/workflows/stock-notifier.yml`](.github/workflows/stock-notifier.ym
    - `TELEGRAM_BOT_TOKEN` → token from BotFather
    - `TELEGRAM_CHAT_ID` → your chat id
 
-   Or via CLI: `gh secret set TELEGRAM_BOT_TOKEN` then `gh secret set TELEGRAM_CHAT_ID`.
+3. Create a **fine-grained Personal Access Token** (Settings → Developer settings → Fine-grained tokens):
+   - Repository access: *Only select repositories* → this repo
+   - Repository permissions → **Actions: Read and write** (nothing else — `Workflows` is NOT needed)
+   - Note the **expiration date**: an expired token makes the cron fail silently with 401. Renew before it expires.
 
-3. **Actions** tab → pick **Stock Notifier** → **Run workflow** to test manually. After that, the cron runs on its own every 5 minutes.
+4. Create a cronjob on [cron-job.org](https://console.cron-job.org) (Advanced tab):
+
+   | Setting | Value |
+   |---|---|
+   | URL | `https://api.github.com/repos/<username>/<repo>/actions/workflows/stock-notifier.yml/dispatches` |
+   | Method | `POST` |
+   | Header | `Authorization: Bearer <PAT>` |
+   | Header | `Accept: application/vnd.github+json` |
+   | Body | `{"ref":"main"}` |
+   | Schedule | Every 5 minutes |
+
+5. Verify — open this in a browser:
+
+   ```
+   https://api.github.com/repos/<username>/<repo>/actions/workflows/stock-notifier.yml/runs?per_page=10
+   ```
+
+   You should see new runs every 5 minutes (event `workflow_dispatch`).
 
 Notes:
 
-- The token **never lives in the code** — `config.json` in the repo intentionally contains no secrets; secrets are injected as env vars during runs.
-- `state.json` is re-committed automatically **only when a product's status, price, or discount actually changes** (`[skip ci]` commit message), so stock-transition detection stays connected across runs without flooding the commit history. Those state commits also count as repo activity, so GitHub's 60-day cron deactivation rule never kicks in.
-- The default interval `*/5` minutes is GitHub Actions' minimum. To stay **free**, the repo must be **public** (unlimited minutes). Private repos only get 2,000 free minutes/month while `*/5` needs ~8,800 (excess billed at ~$0.008/min) — if you keep it private, switch to `*/30`.
-- GitHub's cron is *best-effort*: during peak hours runs can be queued and delayed, so the effective gap sometimes stretches to 5–15 minutes. If you need truly consistent 5-minute checks, run `python main.py watch` on a small server/VPS instead.
-- The polling pattern stays gentle: each run makes only 1 request per product with pauses between requests, plus automatic backoff if Cloudflare starts pushing back.
-- Adding products while running on Actions: edit `config.json` (add the product), push — the next cycle picks it up.
+- The token **never lives in the code** — `config.json` in the repo contains no secrets; secrets are injected as env vars during runs. The PAT stored in cron-job.org is scoped to *triggering runs only* — it cannot push code or read secrets.
+- `state.json` is re-committed automatically **only when a product's status, price, or discount actually changes** (`[skip ci]` commit message), so the commit history doubles as your stock-change log and keeps transition detection connected across runs.
+- Watchlist size: each run makes 1 request per product with pauses between requests — keep it under ~30 products to stay polite to Cloudflare.
+- Adding products: edit `config.json` (or run `python main.py add ...` locally), then push — the next cycle picks it up.
 
 ---
 

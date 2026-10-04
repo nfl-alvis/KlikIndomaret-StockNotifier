@@ -1,17 +1,12 @@
 name: Stock Notifier
 
-# Cek stok KlikIndomaret berkala lalu kirim notifikasi Telegram.
-# state.json di-commit ulang tiap run agar baseline antar-run tersambung.
+# Cek stok KlikIndomaret lalu kirim notifikasi Telegram.
+# Pemicu: cron-job.org (eksternal) -> POST ke dispatch API -> workflow_dispatch.
+# Blok `schedule` internal GitHub dihapus: penjadwal GitHub bersifat
+# best-effort dan terbukti tidak berjalan; cron-job.org presisi tiap 5 menit.
 
 on:
-  schedule:
-    # Tiap 5 menit = minimum yang diizinkan GitHub Actions.
-    # PENTING kuota: tiap run di-bill minimal 1 menit -> ±8.800 menit/bulan.
-    #   - Repo PUBLIC  : gratis (kuota menit tak terbatas)  -> pakai '*/5'
-    #   - Repo PRIVATE : gratis hanya 2.000 menit/bulan -> kena biaya (~$0.008/menit)
-    #     Kalau tetap private, turunkan ke '*/30' (±1.450 menit/bulan, gratis).
-    - cron: '*/5 * * * *'
-  workflow_dispatch: # tombol "Run workflow" manual di tab Actions
+  workflow_dispatch: # dipicu manual di tab Actions ATAU otomatis oleh cron-job.org
 
 permissions:
   contents: write # untuk commit state.json
