@@ -9,10 +9,10 @@
     "request_delay_seconds": 3
   },
   "store": {
-    "storeCode": "TJKT",
-    "districtId": "141100100",
-    "latitude": -6.1763897,
-    "longitude": 106.82667,
+    "storeCode": "TMLG",
+    "districtId": "141500345",
+    "latitude": -7.95706,
+    "longitude": 112.63222,
     "mode": "DELIVERY"
   },
   "notify_on": [
