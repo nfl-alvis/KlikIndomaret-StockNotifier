@@ -91,13 +91,13 @@
       ]
     },
     "20093221": {
-      "status": "unavailable",
+      "status": "available",
       "price": 3200,
       "final_price": 1600,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Indomie Mi Instan Goreng Ayam Geprek 85G",
-      "selling": null,
+      "selling": true,
       "price_history": [
         {
           "d": "2026-10-07",
