@@ -10,9 +10,9 @@
   },
   "store": {
     "storeCode": "TMLG",
-    "districtId": "141500345",
-    "latitude": -7.95706,
-    "longitude": 112.63222,
+    "districtId": "141500300",
+    "latitude": -7.999284,
+    "longitude": 112.63417,
     "mode": "DELIVERY"
   },
   "notify_on": [
