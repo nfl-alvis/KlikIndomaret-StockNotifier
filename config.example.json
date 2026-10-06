@@ -15,7 +15,12 @@
     "longitude": 106.82667,
     "mode": "DELIVERY"
   },
-  "notify_on": ["in_stock", "out_of_stock", "price_drop", "discount", "qty_drop"],
+  "notify_on": ["in_stock", "out_of_stock", "price_drop", "price_increase", "discount", "qty_drop"],
+  "pat_expiry": "",
+  "new_product_watch": {
+    "enabled": true,
+    "keywords": ["beras", "minyak goreng"]
+  },
   "products": [
     {
       "plu": "20143793",

@@ -7,7 +7,13 @@
       "discount_text": "50%",
       "qty_struk": 2,
       "name": "Lahap Lele Beras Premium 5Kg",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 37250
+        }
+      ]
     },
     "20143145": {
       "status": "available",
@@ -16,7 +22,13 @@
       "discount_text": "50%",
       "qty_struk": 2,
       "name": "Lahap Lele Beras Premium 10Kg",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 74500
+        }
+      ]
     },
     "20016512": {
       "status": "available",
@@ -25,7 +37,13 @@
       "discount_text": "50%",
       "qty_struk": 6,
       "name": "Sunco Minyak Goreng 2L",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 23000
+        }
+      ]
     },
     "10000181": {
       "status": "available",
@@ -34,7 +52,13 @@
       "discount_text": "50%",
       "qty_struk": 12,
       "name": "Bimoli Minyak Goreng 5000Ml",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 56000
+        }
+      ]
     },
     "10021008": {
       "status": "available",
@@ -43,7 +67,13 @@
       "discount_text": "50%",
       "qty_struk": 12,
       "name": "Gulaku Gula Tebu (Kuning) 1000G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 8750
+        }
+      ]
     },
     "10005599": {
       "status": "available",
@@ -52,7 +82,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Segitiga Biru Tepung Terigu 1000G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 7450
+        }
+      ]
     },
     "20093221": {
       "status": "available",
@@ -61,7 +97,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Indomie Mi Instan Goreng Ayam Geprek 85G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 1600
+        }
+      ]
     },
     "20140674": {
       "status": "available",
@@ -70,7 +112,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Sedaap Mie Mie Instant Ayam Bawang 5X71G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 7450
+        }
+      ]
     },
     "10017287": {
       "status": "available",
@@ -79,7 +127,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Telur Ayam Negeri Curah",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 11950
+        }
+      ]
     },
     "10036570": {
       "status": "available",
@@ -88,7 +142,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Abc Sardines Chili 155G ",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 6350
+        }
+      ]
     },
     "10000426": {
       "status": "available",
@@ -97,7 +157,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Aqua Air Mineral 1500Ml",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 3300
+        }
+      ]
     },
     "20121514": {
       "status": "available",
@@ -106,7 +172,13 @@
       "discount_text": "50%",
       "qty_struk": 4,
       "name": "Le Minerale Air Mineral 15L",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 11100
+        }
+      ]
     },
     "20046862": {
       "status": "available",
@@ -115,7 +187,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Ultra Mimi Susu Cair Uht Full Cream 125Ml",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 2200
+        }
+      ]
     },
     "20121733": {
       "status": "available",
@@ -124,7 +202,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Frisian Flag Susu Kental Manis Full Cream Gold 240G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 6950
+        }
+      ]
     },
     "20049998": {
       "status": "unavailable",
@@ -133,7 +217,8 @@
       "discount_text": null,
       "qty_struk": null,
       "name": "Milo Healthy Drink Activ-Go 990G",
-      "selling": null
+      "selling": null,
+      "price_history": []
     },
     "20140181": {
       "status": "available",
@@ -142,7 +227,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Kapal Api Kopi Bubuk Special Merah 250G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 21250
+        }
+      ]
     },
     "20100796": {
       "status": "available",
@@ -151,7 +242,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Torabika Kopi Instant Creamy Latte 10X22g",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 11250
+        }
+      ]
     },
     "20031318": {
       "status": "available",
@@ -160,7 +257,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Good Day Kopi Instant Cappuccino W/Coklat Granul 10X25g",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 12750
+        }
+      ]
     },
     "20076052": {
       "status": "available",
@@ -169,7 +272,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pucuk Harum Minuman Teh Melati 1.3L",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 6400
+        }
+      ]
     },
     "20100143": {
       "status": "available",
@@ -178,7 +287,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Ultra Teh Kotak Apple 300Ml",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 2250
+        }
+      ]
     },
     "20009722": {
       "status": "available",
@@ -187,7 +302,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pocari Sweat Minuman Isotonik 500Ml ",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 4250
+        }
+      ]
     },
     "20019179": {
       "status": "available",
@@ -196,7 +317,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Bear Brand Gold Susu Steril Malt Putih 140mL",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 6100
+        }
+      ]
     },
     "10000859": {
       "status": "available",
@@ -205,7 +332,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Abc Kecap Manis 130mL",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 4950
+        }
+      ]
     },
     "20043799": {
       "status": "available",
@@ -214,7 +347,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Abc Sambal Extra Pedas 380G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 9950
+        }
+      ]
     },
     "20037446": {
       "status": "available",
@@ -223,7 +362,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Rinso,Deterjen Liquid + Molto Ref Rose Fresh 750/700G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 8750
+        }
+      ]
     },
     "10013205": {
       "status": "available",
@@ -232,7 +377,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Sunlight Pencuci Piring Jeruk Nipis 675g",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 6950
+        }
+      ]
     },
     "20059866": {
       "status": "available",
@@ -241,7 +392,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Lifebuoy,Sabun Mandi Multipack Total 10 4X110g Bdd",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 12600
+        }
+      ]
     },
     "20047217": {
       "status": "available",
@@ -250,7 +407,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pepsodent Pasta Gigi White 225G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 9750
+        }
+      ]
     },
     "10035165": {
       "status": "available",
@@ -259,7 +422,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Oreo Biskuit Vanila 110.4G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 5250
+        }
+      ]
     },
     "20141944": {
       "status": "available",
@@ -268,7 +437,13 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Chitato Snack Potato Chips Rendang Sapi 62G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 6000
+        }
+      ]
     },
     "20128719": {
       "status": "available",
@@ -277,7 +452,14 @@
       "discount_text": "50%",
       "qty_struk": null,
       "name": "So Klin Softergent Powder Lavender & Lily 375G",
-      "selling": true
+      "selling": true,
+      "price_history": [
+        {
+          "d": "2026-10-07",
+          "p": 5000
+        }
+      ]
     }
-  }
+  },
+  "last_heartbeat": "2026-10-07"
 }

@@ -1,6 +1,8 @@
 # StockNotifier KlikIndomaret 🛒➡️📣
 
-Telegram notifications when products come back in stock ("barang masuk"), go out of stock, or drop in price on [klikindomaret.com](https://www.klikindomaret.com).
+[![Stock Notifier](https://github.com/nfl-alvis/KlikIndomaret-StockNotifier/actions/workflows/stock-notifier.yml/badge.svg)](https://github.com/nfl-alvis/KlikIndomaret-StockNotifier/actions/workflows/stock-notifier.yml)
+
+Telegram notifications when products come back in stock ("barang masuk"), go out of stock, drop in price, or run low on allocation — on [klikindomaret.com](https://www.klikindomaret.com).
 
 This is the result of reverse engineering the KlikIndomaret API (web + Android APK) plus its poller implementation — no account login needed, only public endpoints.
 
@@ -199,16 +201,47 @@ Notes:
 
 ---
 
+## Telegram Bot Commands
+
+The bot processes commands at the start of each cycle (replies can lag up to 5 minutes — it lives on GitHub Actions, no extra server). Only your chat_id is served.
+
+| Command | Function |
+|---|---|
+| `/status` | last known watchlist condition (status, price, allocation) |
+| `/list` | monitored products |
+| `/check` | check stock now, results sent in the same run |
+| `/add <PLU \| URL \| keyword>` | add a product (max 60) |
+| `/remove <PLU>` | remove a product |
+| `/help` | help |
+
+`/add` & `/remove` edit `config.json` in the repo — committed automatically by the bot.
+
+## Operational Features
+
+- **Daily heartbeat** — a 1×/day summary to Telegram, proof of life (WIB timezone).
+- **PAT expiry reminder** — set `pat_expiry: "YYYY-MM-DD"` in config; the bot warns at H-7, H-3, and when expired (a dead PAT = cron-job.org fails with 401 = notifications silently stop).
+- **CI failure alarm** — if ALL products fail to check in one run (e.g. anti-bot rejects), the job exits non-zero → GitHub emails you.
+- **Pending notification queue** — failed sends go to a queue (max 20) and are retried automatically, prefixed "⏮️ (terlambat)".
+- **New product detection** — `new_product_watch.keywords`: each cycle compares search results; new products → notification (max 5 per keyword).
+- **Price history** — price changes are recorded per product in `state.json` (last 30 points).
+- **Config validation at startup** + **unit tests** (`python -m pytest test_monitor.py -q`, also run in CI).
+- **Auto-scale interval** (local `watch` mode): minimum interval = products × delay × 2.
+
+---
+
 ## Project Structure
 
 ```
-main.py             CLI (watch/check/add/list/remove/test-telegram/stores)
+main.py             CLI (run/watch/check/add/list/remove/test-telegram/stores)
+bot.py              Perintah bot Telegram (diproses tiap siklus CI)
+appconfig.py        Load/save config.json bersama
 klikidm.py          KlikIndomaret API client (search/result, detail-page, stores)
-monitor.py          Polling loop, stock/price transition detection, message formatting
-telegram_notify.py  Telegram Bot API message sender
-.github/workflows/  GitHub Actions workflow (scheduled checks + state commit)
-config.json         Watchlist + settings (committed to the repo, contains NO secrets)
-state.json          Last known status per product (committed so CI stays in sync)
+monitor.py          Polling loop, deteksi transisi, heartbeat, format pesan
+telegram_notify.py  Telegram Bot API (kirim pesan + getUpdates)
+test_monitor.py     Unit test logika deteksi (pytest)
+.github/workflows/  GitHub Actions workflow (pytest + cek + commit runtime files)
+config.json         Watchlist + pengaturan (ikut repo, TANPA rahasia di dalamnya)
+state.json          Status terakhir per produk (ikut repo agar CI tersambung)
 ```
 
 ## Notes

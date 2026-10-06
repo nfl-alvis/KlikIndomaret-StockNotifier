@@ -2,13 +2,14 @@
 StockNotifier KlikIndomaret — entry point CLI.
 
 Perintah:
-    python main.py watch                  # jalankan monitor terus-menerus (default)
-    python main.py check                  # sekali cek semua produk di watchlist
-    python main.py add <PLU|URL|kata>     # tambah produk ke watchlist
-    python main.py list                   # lihat watchlist
-    python main.py remove <PLU>           # hapus dari watchlist
-    python main.py test-telegram          # tes koneksi bot Telegram
-    python main.py stores                 # daftar toko (storeCode) di area Anda
+    python main.py run                   # mode CI: proses perintah bot + cek stok + exit code
+    python main.py watch                 # jalankan monitor terus-menerus (lokal)
+    python main.py check                 # sekali cek semua produk (tanpa bot)
+    python main.py add <PLU|URL|kata>    # tambah produk ke watchlist
+    python main.py list                  # lihat watchlist
+    python main.py remove <PLU>          # hapus dari watchlist
+    python main.py test-telegram         # tes koneksi bot Telegram
+    python main.py stores                # daftar toko (storeCode) di area Anda
 """
 
 from __future__ import annotations
@@ -17,47 +18,54 @@ import argparse
 import json
 import logging
 import os
-import re
 import sys
-from pathlib import Path
+from datetime import datetime, timedelta, timezone
+from typing import Optional
 
-from klikidm import KlikIndomaretClient, Product, fetch_product
-from monitor import check_once, watch
+from appconfig import CONFIG_FILE, load_config, save_config
+from klikidm import KlikIndomaretClient, Product, fetch_product, parse_query
+from monitor import KNOWN_NOTIFY, check_once, watch
 from telegram_notify import test as tg_test
 
-BASE_DIR = Path(__file__).parent
-CONFIG_FILE = BASE_DIR / "config.json"
-
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
+log = logging.getLogger("main")
 
 
-def load_config() -> dict:
-    if not CONFIG_FILE.exists():
-        example = BASE_DIR / "config.example.json"
-        if example.exists():
-            CONFIG_FILE.write_text(example.read_text(encoding="utf-8"), encoding="utf-8")
-            print(f"config.json belum ada — dibuat salinan dari config.example.json.\n"
-                  f"Isi telegram.bot_token & telegram.chat_id di {CONFIG_FILE}, lalu jalankan lagi.")
-            sys.exit(1)
-        print("config.json tidak ditemukan!")
-        sys.exit(1)
-    return json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
-
-
-def save_config(cfg: dict) -> None:
-    CONFIG_FILE.write_text(json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8")
-
-
-def make_client(cfg: dict) -> KlikIndomaretClient:
-    store = cfg.get("store", {})
-    return KlikIndomaretClient(
-        store_code=store.get("storeCode", "TJKT"),
-        district_id=str(store.get("districtId", "141100100")),
-        latitude=store.get("latitude", -6.1763897),
-        longitude=store.get("longitude", 106.82667),
-        mode=store.get("mode", "DELIVERY"),
-        request_delay=float(cfg.get("polling", {}).get("request_delay_seconds", 3.0)),
-    )
+def validate_config(cfg: dict) -> list[str]:
+    """Return daftar masalah konfigurasi (kosong = valid)."""
+    problems: list[str] = []
+    polling = cfg.get("polling") or {}
+    for key in ("interval_seconds", "jitter_seconds", "request_delay_seconds"):
+        v = polling.get(key)
+        if not isinstance(v, (int, float)) or v <= 0:
+            problems.append(f"polling.{key} harus angka > 0 (sekarang: {v!r})")
+    store = cfg.get("store") or {}
+    if not store.get("storeCode"):
+        problems.append("store.storeCode wajib diisi (mis. TMLG)")
+    if not store.get("districtId"):
+        problems.append("store.districtId wajib diisi")
+    notify = cfg.get("notify_on")
+    if not isinstance(notify, list) or not notify:
+        problems.append("notify_on harus list berisi minimal satu jenis")
+    else:
+        for n in notify:
+            if n not in KNOWN_NOTIFY:
+                problems.append(f"notify_on '{n}' tidak dikenal (pilihan: {', '.join(sorted(KNOWN_NOTIFY))})")
+    if not isinstance(cfg.get("products"), list):
+        problems.append("products harus berupa list")
+    else:
+        for i, p in enumerate(cfg["products"]):
+            if not (str(p.get("plu") or "").strip() or str(p.get("permalink") or "").strip()):
+                problems.append(f"products[{i}] butuh 'plu' atau 'permalink'")
+    watch = cfg.get("new_product_watch") or {}
+    if watch.get("enabled") and not watch.get("keywords"):
+        problems.append("new_product_watch.enabled tapi keywords kosong")
+    if cfg.get("pat_expiry"):
+        try:
+            datetime.strptime(str(cfg["pat_expiry"]), "%Y-%m-%d")
+        except ValueError:
+            problems.append(f"pat_expiry '{cfg['pat_expiry']}' bukan format YYYY-MM-DD")
+    return problems
 
 
 def tg_conf(cfg: dict) -> dict:
@@ -70,14 +78,16 @@ def tg_conf(cfg: dict) -> dict:
     return {"bot_token": token, "chat_id": chat}
 
 
-def parse_query(q: str) -> dict:
-    """Kenali bentuk input: URL produk, PLU angka, atau kata kunci."""
-    m = re.search(r"klikindomaret\.com/xpress/([^/?]+)", q)
-    if m:
-        return {"permalink": m.group(1)}
-    if q.isdigit() and len(q) >= 6:
-        return {"plu": q}
-    return {"keyword": q}
+def make_client(cfg: dict) -> KlikIndomaretClient:
+    store = cfg.get("store", {})
+    return KlikIndomaretClient(
+        store_code=store.get("storeCode", "TJKT"),
+        district_id=str(store.get("districtId", "141100100")),
+        latitude=store.get("latitude", -6.1763897),
+        longitude=store.get("longitude", 106.82667),
+        mode=store.get("mode", "DELIVERY"),
+        request_delay=float(cfg.get("polling", {}).get("request_delay_seconds", 3.0)),
+    )
 
 
 def cmd_add(cfg: dict, query: str, index: int, no_save: bool) -> None:
@@ -159,17 +169,56 @@ def cmd_stores(cfg: dict) -> None:
         print(f"storeCode={s.get('storeCode')} | {s.get('storeName')} | area={s.get('areaName')}")
 
 
+def cmd_run(cfg: dict) -> None:
+    """Mode CI: proses perintah bot -> cek stok -> heartbeat dsb -> exit code."""
+    client = make_client(cfg)
+    tg = tg_conf(cfg)
+    check_requested = False
+
+    if tg:
+        from bot import process_updates
+
+        check_requested, cfg = process_updates(cfg, client, tg)
+    else:
+        print("⚠️  Telegram belum dikonfigurasi — notifikasi hanya tampil di console.")
+
+    summaries = check_once(cfg, client, tg)
+    for s in summaries:
+        print(s)
+
+    if check_requested and tg:
+        from telegram_notify import send_message
+
+        teks = "📋 <b>Hasil cek stok:</b>\n" + "\n".join(escape_html(s) for s in summaries) or "tidak ada data"
+        send_message(tg["bot_token"], tg["chat_id"], teks)
+
+    failures = [s for s in summaries if s.startswith("⚠️")]
+    products = cfg.get("products", [])
+    if products and len(failures) == len(products):
+        log.error("SEMUA produk gagal dicek — menandakan anti-bot/gangguan. Exit 2 agar GitHub mengirim email.")
+        sys.exit(2)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="StockNotifier KlikIndomaret")
-    parser.add_argument("command", nargs="?", default="watch",
-                        choices=["watch", "check", "add", "list", "remove", "test-telegram", "stores"])
+    parser.add_argument(
+        "command", nargs="?", default="watch",
+        choices=["run", "watch", "check", "add", "list", "remove", "test-telegram", "stores"],
+    )
     parser.add_argument("query", nargs="?", help="PLU / URL produk / kata kunci (untuk add|remove)")
     parser.add_argument("--index", type=int, default=0, help="pilih nomor hasil saat add (default 0)")
     parser.add_argument("--no-save", action="store_true", help="add: hanya tampilkan, jangan simpan")
     args = parser.parse_args()
 
+    cfg = load_config()
+    problems = validate_config(cfg)
+    if problems:
+        print("❌ Konfigurasi tidak valid:")
+        for p in problems:
+            print(f"  - {p}")
+        sys.exit(1)
+
     if args.command == "test-telegram":
-        cfg = load_config()
         tg = tg_conf(cfg)
         if not tg:
             print("Isi telegram.bot_token & telegram.chat_id di config.json dulu (atau set env TELEGRAM_BOT_TOKEN & TELEGRAM_CHAT_ID).")
@@ -181,9 +230,9 @@ def main() -> None:
             sys.exit(1)
         return
 
-    cfg = load_config()
-
-    if args.command == "watch":
+    if args.command == "run":
+        cmd_run(cfg)
+    elif args.command == "watch":
         client = make_client(cfg)
         tg = tg_conf(cfg)
         if not tg:

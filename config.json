@@ -19,9 +19,15 @@
     "in_stock",
     "out_of_stock",
     "price_drop",
+    "price_increase",
     "discount",
     "qty_drop"
   ],
+  "pat_expiry": "",
+  "new_product_watch": {
+    "enabled": true,
+    "keywords": ["beras", "minyak goreng"]
+  },
   "products": [
     {
       "plu": "20142264",

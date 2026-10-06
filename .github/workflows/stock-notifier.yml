@@ -4,12 +4,13 @@ name: Stock Notifier
 # Pemicu: cron-job.org (eksternal) -> POST ke dispatch API -> workflow_dispatch.
 # Blok `schedule` internal GitHub dihapus: penjadwal GitHub bersifat
 # best-effort dan terbukti tidak berjalan; cron-job.org presisi tiap 5 menit.
+# Tiap run juga memproses perintah bot Telegram (/status /list /check /add /remove).
 
 on:
   workflow_dispatch: # dipicu manual di tab Actions ATAU otomatis oleh cron-job.org
 
 permissions:
-  contents: write # untuk commit state.json
+  contents: write # untuk commit state.json & config.json (hasil perintah bot)
 
 concurrency:
   group: stock-notifier
@@ -29,21 +30,24 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Cek stok & kirim notifikasi
+      - name: Unit test (murni logika, tanpa jaringan)
+        run: python -m pytest test_monitor.py -q
+
+      - name: Proses perintah bot, cek stok & kirim notifikasi
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python main.py check
+        run: python main.py run
 
-      - name: Simpan state ke repo
+      - name: Simpan state & config ke repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add state.json
+          git add state.json config.json
           if git diff --cached --quiet; then
             echo "State tidak berubah."
           else
-            git commit -m "chore: update state [skip ci]"
+            git commit -m "chore: update runtime files [skip ci]"
             git pull --rebase --autostash
             git push
           fi

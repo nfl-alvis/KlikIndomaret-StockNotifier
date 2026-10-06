@@ -20,6 +20,7 @@ Catatan anti-bot:
 from __future__ import annotations
 
 import logging
+import re
 import time
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
@@ -203,6 +204,19 @@ class KlikIndomaretClient:
         if isinstance(data, dict):
             return [data]
         return data if isinstance(data, list) else []
+
+
+def parse_query(q: str) -> Dict[str, str]:
+    """
+    Kenali bentuk input pencarian produk: URL produk, PLU (angka >=6 digit),
+    atau kata kunci. Dipakai CLI `add` dan perintah bot /add.
+    """
+    m = re.search(r"klikindomaret\.com/xpress/([^/?]+)", q)
+    if m:
+        return {"permalink": m.group(1)}
+    if q.strip().isdigit() and len(q.strip()) >= 6:
+        return {"plu": q.strip()}
+    return {"keyword": q.strip()}
 
 
 def fetch_product(client: KlikIndomaretClient, item: Dict[str, Any]) -> Optional[Product]:
