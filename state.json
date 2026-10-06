@@ -31,13 +31,13 @@
       ]
     },
     "20016512": {
-      "status": "available",
+      "status": "unavailable",
       "price": 46000,
       "final_price": 23000,
       "discount_text": "50%",
       "qty_struk": 6,
       "name": "Sunco Minyak Goreng 2L",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
@@ -91,13 +91,13 @@
       ]
     },
     "20093221": {
-      "status": "available",
+      "status": "unavailable",
       "price": 3200,
       "final_price": 1600,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Indomie Mi Instan Goreng Ayam Geprek 85G",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
@@ -501,11 +501,11 @@
       "10012753",
       "10008989",
       "10012338",
-      "20016512",
       "20140913",
       "10008469",
       "20077116",
-      "20006644"
+      "20006644",
+      "20018272"
     ]
   }
 }
