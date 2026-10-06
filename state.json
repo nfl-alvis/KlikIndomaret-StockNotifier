@@ -31,6 +31,222 @@
       "discount_text": "50%",
       "name": "Sunco Minyak Goreng 2L",
       "selling": true
+    },
+    "10000181": {
+      "status": "available",
+      "price": 112000,
+      "final_price": 56000,
+      "discount_text": "50%",
+      "name": "Bimoli Minyak Goreng 5000Ml",
+      "selling": true
+    },
+    "10021008": {
+      "status": "available",
+      "price": 17500,
+      "final_price": 8750,
+      "discount_text": "50%",
+      "name": "Gulaku Gula Tebu (Kuning) 1000G",
+      "selling": true
+    },
+    "10005599": {
+      "status": "available",
+      "price": 14900,
+      "final_price": 7450,
+      "discount_text": "50%",
+      "name": "Segitiga Biru Tepung Terigu 1000G",
+      "selling": true
+    },
+    "20093221": {
+      "status": "available",
+      "price": 3200,
+      "final_price": 1600,
+      "discount_text": "50%",
+      "name": "Indomie Mi Instan Goreng Ayam Geprek 85G",
+      "selling": true
+    },
+    "20140674": {
+      "status": "available",
+      "price": 14900,
+      "final_price": 7450,
+      "discount_text": "50%",
+      "name": "Sedaap Mie Mie Instant Ayam Bawang 5X71G",
+      "selling": true
+    },
+    "10017287": {
+      "status": "available",
+      "price": 25100,
+      "final_price": 12550,
+      "discount_text": "50%",
+      "name": "Telur Ayam Negeri Curah",
+      "selling": true
+    },
+    "10036570": {
+      "status": "available",
+      "price": 12700,
+      "final_price": 6350,
+      "discount_text": "50%",
+      "name": "Abc Sardines Chili 155G ",
+      "selling": true
+    },
+    "10000426": {
+      "status": "available",
+      "price": 6600,
+      "final_price": 3300,
+      "discount_text": "50%",
+      "name": "Aqua Air Mineral 1500Ml",
+      "selling": true
+    },
+    "20121514": {
+      "status": "available",
+      "price": 23000,
+      "final_price": 11500,
+      "discount_text": "50%",
+      "name": "Le Minerale Air Mineral 15L",
+      "selling": true
+    },
+    "20046862": {
+      "status": "available",
+      "price": 4400,
+      "final_price": 2200,
+      "discount_text": "50%",
+      "name": "Ultra Mimi Susu Cair Uht Full Cream 125Ml",
+      "selling": true
+    },
+    "20121733": {
+      "status": "available",
+      "price": 13900,
+      "final_price": 6950,
+      "discount_text": "50%",
+      "name": "Frisian Flag Susu Kental Manis Full Cream Gold 240G",
+      "selling": true
+    },
+    "20049998": {
+      "status": "available",
+      "price": 98500,
+      "final_price": 49250,
+      "discount_text": "50%",
+      "name": "Milo Healthy Drink Activ-Go 990G",
+      "selling": true
+    },
+    "20140181": {
+      "status": "available",
+      "price": 42500,
+      "final_price": 21250,
+      "discount_text": "50%",
+      "name": "Kapal Api Kopi Bubuk Special Merah 250G",
+      "selling": true
+    },
+    "20100796": {
+      "status": "available",
+      "price": 22500,
+      "final_price": 11250,
+      "discount_text": "50%",
+      "name": "Torabika Kopi Instant Creamy Latte 10X22g",
+      "selling": true
+    },
+    "20031318": {
+      "status": "available",
+      "price": 25000,
+      "final_price": 12500,
+      "discount_text": "50%",
+      "name": "Good Day Kopi Instant Cappuccino W/Coklat Granul 10X25g",
+      "selling": true
+    },
+    "20076052": {
+      "status": "available",
+      "price": 12800,
+      "final_price": 6400,
+      "discount_text": "50%",
+      "name": "Pucuk Harum Minuman Teh Melati 1.3L",
+      "selling": true
+    },
+    "20100143": {
+      "status": "available",
+      "price": 4500,
+      "final_price": 2250,
+      "discount_text": "50%",
+      "name": "Ultra Teh Kotak Apple 300Ml",
+      "selling": true
+    },
+    "20009722": {
+      "status": "available",
+      "price": 7900,
+      "final_price": 3950,
+      "discount_text": "50%",
+      "name": "Pocari Sweat Minuman Isotonik 500Ml ",
+      "selling": true
+    },
+    "20019179": {
+      "status": "available",
+      "price": 12200,
+      "final_price": 6100,
+      "discount_text": "50%",
+      "name": "Bear Brand Gold Susu Steril Malt Putih 140mL",
+      "selling": true
+    },
+    "10000859": {
+      "status": "available",
+      "price": 9900,
+      "final_price": 4950,
+      "discount_text": "50%",
+      "name": "Abc Kecap Manis 130mL",
+      "selling": true
+    },
+    "20043799": {
+      "status": "available",
+      "price": 19900,
+      "final_price": 9950,
+      "discount_text": "50%",
+      "name": "Abc Sambal Extra Pedas 380G",
+      "selling": true
+    },
+    "20037446": {
+      "status": "available",
+      "price": 17500,
+      "final_price": 8750,
+      "discount_text": "50%",
+      "name": "Rinso,Deterjen Liquid + Molto Ref Rose Fresh 750/700G",
+      "selling": true
+    },
+    "10013205": {
+      "status": "available",
+      "price": 13900,
+      "final_price": 6950,
+      "discount_text": "50%",
+      "name": "Sunlight Pencuci Piring Jeruk Nipis 675g",
+      "selling": true
+    },
+    "20059866": {
+      "status": "available",
+      "price": 24000,
+      "final_price": 12000,
+      "discount_text": "50%",
+      "name": "Lifebuoy,Sabun Mandi Multipack Total 10 4X110g Bdd",
+      "selling": true
+    },
+    "20047217": {
+      "status": "available",
+      "price": 19500,
+      "final_price": 9750,
+      "discount_text": "50%",
+      "name": "Pepsodent Pasta Gigi White 225G",
+      "selling": true
+    },
+    "10035165": {
+      "status": "available",
+      "price": 10500,
+      "final_price": 5250,
+      "discount_text": "50%",
+      "name": "Oreo Biskuit Vanila 110.4G",
+      "selling": true
+    },
+    "20141944": {
+      "status": "available",
+      "price": 11900,
+      "final_price": 5950,
+      "discount_text": "50%",
+      "name": "Chitato Snack Potato Chips Rendang Sapi 62G",
+      "selling": true
     }
   }
 }
