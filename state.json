@@ -31,13 +31,13 @@
       ]
     },
     "20016512": {
-      "status": "unavailable",
+      "status": "available",
       "price": 46000,
       "final_price": 23000,
       "discount_text": "50%",
       "qty_struk": 6,
       "name": "Sunco Minyak Goreng 2L",
-      "selling": null,
+      "selling": true,
       "price_history": [
         {
           "d": "2026-10-07",
@@ -501,11 +501,11 @@
       "10012753",
       "10008989",
       "10012338",
+      "20016512",
       "20140913",
       "10008469",
       "20077116",
-      "20006644",
-      "20018272"
+      "20006644"
     ]
   }
 }
