@@ -5,6 +5,7 @@
       "price": 74500,
       "final_price": 37250,
       "discount_text": "50%",
+      "qty_struk": 2,
       "name": "Lahap Lele Beras Premium 5Kg",
       "selling": true
     },
@@ -13,6 +14,7 @@
       "price": 149000,
       "final_price": 74500,
       "discount_text": "50%",
+      "qty_struk": 2,
       "name": "Lahap Lele Beras Premium 10Kg",
       "selling": true
     },
@@ -21,6 +23,7 @@
       "price": 46000,
       "final_price": 23000,
       "discount_text": "50%",
+      "qty_struk": 6,
       "name": "Sunco Minyak Goreng 2L",
       "selling": true
     },
@@ -29,6 +32,7 @@
       "price": 112000,
       "final_price": 56000,
       "discount_text": "50%",
+      "qty_struk": 12,
       "name": "Bimoli Minyak Goreng 5000Ml",
       "selling": true
     },
@@ -37,6 +41,7 @@
       "price": 17500,
       "final_price": 8750,
       "discount_text": "50%",
+      "qty_struk": 12,
       "name": "Gulaku Gula Tebu (Kuning) 1000G",
       "selling": true
     },
@@ -45,6 +50,7 @@
       "price": 14900,
       "final_price": 7450,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Segitiga Biru Tepung Terigu 1000G",
       "selling": true
     },
@@ -53,6 +59,7 @@
       "price": 3200,
       "final_price": 1600,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Indomie Mi Instan Goreng Ayam Geprek 85G",
       "selling": true
     },
@@ -61,6 +68,7 @@
       "price": 14900,
       "final_price": 7450,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Sedaap Mie Mie Instant Ayam Bawang 5X71G",
       "selling": true
     },
@@ -69,6 +77,7 @@
       "price": 23900,
       "final_price": 11950,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Telur Ayam Negeri Curah",
       "selling": true
     },
@@ -77,6 +86,7 @@
       "price": 12700,
       "final_price": 6350,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Abc Sardines Chili 155G ",
       "selling": true
     },
@@ -85,6 +95,7 @@
       "price": 6600,
       "final_price": 3300,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Aqua Air Mineral 1500Ml",
       "selling": true
     },
@@ -93,6 +104,7 @@
       "price": 22200,
       "final_price": 11100,
       "discount_text": "50%",
+      "qty_struk": 4,
       "name": "Le Minerale Air Mineral 15L",
       "selling": true
     },
@@ -101,6 +113,7 @@
       "price": 4400,
       "final_price": 2200,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Ultra Mimi Susu Cair Uht Full Cream 125Ml",
       "selling": true
     },
@@ -109,6 +122,7 @@
       "price": 13900,
       "final_price": 6950,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Frisian Flag Susu Kental Manis Full Cream Gold 240G",
       "selling": true
     },
@@ -117,6 +131,7 @@
       "price": null,
       "final_price": null,
       "discount_text": null,
+      "qty_struk": null,
       "name": "Milo Healthy Drink Activ-Go 990G",
       "selling": null
     },
@@ -125,6 +140,7 @@
       "price": 42500,
       "final_price": 21250,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Kapal Api Kopi Bubuk Special Merah 250G",
       "selling": true
     },
@@ -133,6 +149,7 @@
       "price": 22500,
       "final_price": 11250,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Torabika Kopi Instant Creamy Latte 10X22g",
       "selling": true
     },
@@ -141,6 +158,7 @@
       "price": 25500,
       "final_price": 12750,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Good Day Kopi Instant Cappuccino W/Coklat Granul 10X25g",
       "selling": true
     },
@@ -149,6 +167,7 @@
       "price": 12800,
       "final_price": 6400,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Pucuk Harum Minuman Teh Melati 1.3L",
       "selling": true
     },
@@ -157,6 +176,7 @@
       "price": 4500,
       "final_price": 2250,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Ultra Teh Kotak Apple 300Ml",
       "selling": true
     },
@@ -165,6 +185,7 @@
       "price": 8500,
       "final_price": 4250,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Pocari Sweat Minuman Isotonik 500Ml ",
       "selling": true
     },
@@ -173,6 +194,7 @@
       "price": 12200,
       "final_price": 6100,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Bear Brand Gold Susu Steril Malt Putih 140mL",
       "selling": true
     },
@@ -181,6 +203,7 @@
       "price": 9900,
       "final_price": 4950,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Abc Kecap Manis 130mL",
       "selling": true
     },
@@ -189,6 +212,7 @@
       "price": 19900,
       "final_price": 9950,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Abc Sambal Extra Pedas 380G",
       "selling": true
     },
@@ -197,6 +221,7 @@
       "price": 17500,
       "final_price": 8750,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Rinso,Deterjen Liquid + Molto Ref Rose Fresh 750/700G",
       "selling": true
     },
@@ -205,6 +230,7 @@
       "price": 13900,
       "final_price": 6950,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Sunlight Pencuci Piring Jeruk Nipis 675g",
       "selling": true
     },
@@ -213,6 +239,7 @@
       "price": 25200,
       "final_price": 12600,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Lifebuoy,Sabun Mandi Multipack Total 10 4X110g Bdd",
       "selling": true
     },
@@ -221,6 +248,7 @@
       "price": 19500,
       "final_price": 9750,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Pepsodent Pasta Gigi White 225G",
       "selling": true
     },
@@ -229,6 +257,7 @@
       "price": 10500,
       "final_price": 5250,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Oreo Biskuit Vanila 110.4G",
       "selling": true
     },
@@ -237,7 +266,17 @@
       "price": 12000,
       "final_price": 6000,
       "discount_text": "50%",
+      "qty_struk": null,
       "name": "Chitato Snack Potato Chips Rendang Sapi 62G",
+      "selling": true
+    },
+    "20128719": {
+      "status": "available",
+      "price": 10000,
+      "final_price": 5000,
+      "discount_text": "50%",
+      "qty_struk": null,
+      "name": "So Klin Softergent Powder Lavender & Lily 375G",
       "selling": true
     }
   }

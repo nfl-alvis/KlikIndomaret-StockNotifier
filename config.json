@@ -19,7 +19,8 @@
     "in_stock",
     "out_of_stock",
     "price_drop",
-    "discount"
+    "discount",
+    "qty_drop"
   ],
   "products": [
     {
@@ -201,6 +202,12 @@
       "permalink": "chitato-chitato-snack-potato-chips-pck-62g-1",
       "name": "Chitato Snack Potato Chips Rendang Sapi 62G",
       "url": "https://www.klikindomaret.com/xpress/chitato-chitato-snack-potato-chips-pck-62g-1"
+    },
+    {
+      "plu": "20128719",
+      "permalink": "softergent-powder-12",
+      "name": "So Klin Softergent Powder Lavender & Lily 375G",
+      "url": "https://www.klikindomaret.com/xpress/softergent-powder-12"
     }
   ]
 }

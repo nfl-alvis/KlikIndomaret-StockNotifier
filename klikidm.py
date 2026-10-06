@@ -52,6 +52,7 @@ class Product:
     final_price: Optional[int] = None
     discount_text: Optional[str] = None
     selling: Optional[bool] = None
+    qty_struk: Optional[int] = None
     image_url: Optional[str] = None
     uom: Optional[str] = None
     url: str = ""
@@ -68,6 +69,7 @@ class Product:
             final_price=d.get("finalPrice") if d.get("finalPrice") is not None else d.get("price"),
             discount_text=d.get("discountText"),
             selling=bool(d.get("selling")) if d.get("selling") is not None else None,
+            qty_struk=d.get("availableQtyStruk"),
             image_url=d.get("imageUrl") or d.get("thumbnail"),
             uom=d.get("uom"),
             url=PRODUCT_URL.format(permalink=permalink) if permalink else "",

@@ -7,6 +7,7 @@ Aturan notifikasi (dapat diatur lewat config "notify_on"):
   - out_of_stock: produk yang tadinya ada kini habis/hilang dari katalog
   - price_drop  : harga final turun
   - discount    : muncul diskon baru (discountText berubah dari null/0)
+  - qty_drop    : kuantitas alokasi pickup (availableQtyStruk) muncul atau berkurang
 """
 
 from __future__ import annotations
@@ -65,6 +66,8 @@ def format_message(kind: str, product: Product, prev: Dict[str, Any], cfg: Dict[
         header = "🔴 <b>STOK HABIS</b>"
     elif kind == "price_drop":
         header = "💰 <b>HARGA TURUN!</b>"
+    elif kind == "qty_drop":
+        header = "🆕 <b>ALOKASI TERBATAS MUNCUL!</b>" if prev.get("qty_struk") is None else "📉 <b>STOK MENIPIS!</b>"
     else:
         header = "🏷️ <b>DISKON BARU!</b>"
 
@@ -79,6 +82,12 @@ def format_message(kind: str, product: Product, prev: Dict[str, Any], cfg: Dict[
     if kind == "price_drop" and prev.get("final_price"):
         old = f"Rp {prev['final_price']:,.0f}".replace(",", ".")
         lines.append(f"⬇️ Sebelumnya: {old}")
+    if kind == "qty_drop":
+        new_q = product.qty_struk if product.qty_struk is not None else 0
+        if prev.get("qty_struk") is None:
+            lines.append(f"📦 Sisa alokasi pickup: <b>{new_q}</b>")
+        else:
+            lines.append(f"📦 Sisa alokasi pickup: <b>{new_q}</b> (sebelumnya {prev['qty_struk']})")
     lines += [
         "",
         f"🏪 Toko: {store} ({mode})",
@@ -134,6 +143,15 @@ def check_once(cfg: Dict[str, Any], client: KlikIndomaretClient, tg: Dict[str, s
             and not prev.get("discount_text")
             and now_status == "available"
         )
+        # kuantitas alokasi pickup (availableQtyStruk): muncul atau berkurang
+        qty_now = current.qty_struk if current else None
+        qty_prev = prev.get("qty_struk")
+        qty_drop = (
+            prev_status != "unknown"
+            and now_status == "available"
+            and qty_now is not None
+            and (qty_prev is None or qty_now < qty_prev)
+        )
 
         if became_in_stock and "in_stock" in notify_on:
             messages.append(format_message("in_stock", current, prev, cfg))
@@ -143,6 +161,8 @@ def check_once(cfg: Dict[str, Any], client: KlikIndomaretClient, tg: Dict[str, s
             messages.append(format_message("price_drop", current, prev, cfg))
         if new_discount and not price_drop and "discount" in notify_on:
             messages.append(format_message("discount", current, prev, cfg))
+        if qty_drop and "qty_drop" in notify_on:
+            messages.append(format_message("qty_drop", current, prev, cfg))
 
         # simpan kondisi terbaru — hanya field yang berubah maknanya,
         # agar state.json stabil antar-run (tidak bikin commit tiap siklus)
@@ -151,6 +171,7 @@ def check_once(cfg: Dict[str, Any], client: KlikIndomaretClient, tg: Dict[str, s
             "price": current.price if current else prev.get("price"),
             "final_price": current.final_price if current else prev.get("final_price"),
             "discount_text": current.discount_text if current else prev.get("discount_text"),
+            "qty_struk": qty_now if current else prev.get("qty_struk"),
             "name": name,
             "selling": current.selling if current else None,
         }
