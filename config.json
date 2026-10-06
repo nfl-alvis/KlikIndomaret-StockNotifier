@@ -15,7 +15,12 @@
     "longitude": 106.82667,
     "mode": "DELIVERY"
   },
-  "notify_on": ["in_stock", "out_of_stock", "price_drop", "discount"],
+  "notify_on": [
+    "in_stock",
+    "out_of_stock",
+    "price_drop",
+    "discount"
+  ],
   "products": [
     {
       "plu": "20142264",
@@ -34,6 +39,168 @@
       "permalink": "sunco-sunco-minyak-goreng-pch-2l",
       "name": "Sunco Minyak Goreng 2L",
       "url": "https://www.klikindomaret.com/xpress/sunco-sunco-minyak-goreng-pch-2l"
+    },
+    {
+      "plu": "10000181",
+      "permalink": "minyak-goreng-17",
+      "name": "Bimoli Minyak Goreng 5000Ml",
+      "url": "https://www.klikindomaret.com/xpress/minyak-goreng-17"
+    },
+    {
+      "plu": "10021008",
+      "permalink": "gula-tebu-kuning",
+      "name": "Gulaku Gula Tebu (Kuning) 1000G",
+      "url": "https://www.klikindomaret.com/xpress/gula-tebu-kuning"
+    },
+    {
+      "plu": "10005599",
+      "permalink": "tepung-terigu-3",
+      "name": "Segitiga Biru Tepung Terigu 1000G",
+      "url": "https://www.klikindomaret.com/xpress/tepung-terigu-3"
+    },
+    {
+      "plu": "20093221",
+      "permalink": "mie-goreng-11",
+      "name": "Indomie Mi Instan Goreng Ayam Geprek 85G",
+      "url": "https://www.klikindomaret.com/xpress/mie-goreng-11"
+    },
+    {
+      "plu": "20140674",
+      "permalink": "sedaap-mie-sedaap-mie-mie-instant-pck-5x71g",
+      "name": "Sedaap Mie Mie Instant Ayam Bawang 5X71G",
+      "url": "https://www.klikindomaret.com/xpress/sedaap-mie-sedaap-mie-mie-instant-pck-5x71g"
+    },
+    {
+      "plu": "10017287",
+      "permalink": "telur-telur-ayam-negeri-curah-whl-",
+      "name": "Telur Ayam Negeri Curah",
+      "url": "https://www.klikindomaret.com/xpress/telur-telur-ayam-negeri-curah-whl-"
+    },
+    {
+      "plu": "10036570",
+      "permalink": "sardines-16",
+      "name": "Abc Sardines Chili 155G ",
+      "url": "https://www.klikindomaret.com/xpress/sardines-16"
+    },
+    {
+      "plu": "10000426",
+      "permalink": "air-mineral-aqua-1500",
+      "name": "Aqua Air Mineral 1500Ml",
+      "url": "https://www.klikindomaret.com/xpress/air-mineral-aqua-1500"
+    },
+    {
+      "plu": "20121514",
+      "permalink": "air-mineral-12",
+      "name": "Le Minerale Air Mineral 15L",
+      "url": "https://www.klikindomaret.com/xpress/air-mineral-12"
+    },
+    {
+      "plu": "20046862",
+      "permalink": "susu-cair-uht-mimi",
+      "name": "Ultra Mimi Susu Cair Uht Full Cream 125Ml",
+      "url": "https://www.klikindomaret.com/xpress/susu-cair-uht-mimi"
+    },
+    {
+      "plu": "20121733",
+      "permalink": "gold-susu-kental-manis",
+      "name": "Frisian Flag Susu Kental Manis Full Cream Gold 240G",
+      "url": "https://www.klikindomaret.com/xpress/gold-susu-kental-manis"
+    },
+    {
+      "plu": "20049998",
+      "permalink": "healty-drink-3-in-1-5",
+      "name": "Milo Healthy Drink Activ-Go 990G",
+      "url": "https://www.klikindomaret.com/xpress/healty-drink-3-in-1-5"
+    },
+    {
+      "plu": "20140181",
+      "permalink": "kapal-api-kapal-api-kopi-bubuk-special-merah-pck-250g",
+      "name": "Kapal Api Kopi Bubuk Special Merah 250G",
+      "url": "https://www.klikindomaret.com/xpress/kapal-api-kapal-api-kopi-bubuk-special-merah-pck-250g"
+    },
+    {
+      "plu": "20100796",
+      "permalink": "kopi-instant-creamy-latte-1",
+      "name": "Torabika Kopi Instant Creamy Latte 10X22g",
+      "url": "https://www.klikindomaret.com/xpress/kopi-instant-creamy-latte-1"
+    },
+    {
+      "plu": "20031318",
+      "permalink": "kopi-instant-cappuccino-2",
+      "name": "Good Day Kopi Instant Cappuccino W/Coklat Granul 10X25g",
+      "url": "https://www.klikindomaret.com/xpress/kopi-instant-cappuccino-2"
+    },
+    {
+      "plu": "20076052",
+      "permalink": "minuman-teh-34",
+      "name": "Pucuk Harum Minuman Teh Melati 1.3L",
+      "url": "https://www.klikindomaret.com/xpress/minuman-teh-34"
+    },
+    {
+      "plu": "20100143",
+      "permalink": "teh-kotak-2",
+      "name": "Ultra Teh Kotak Apple 300Ml",
+      "url": "https://www.klikindomaret.com/xpress/teh-kotak-2"
+    },
+    {
+      "plu": "20009722",
+      "permalink": "minuman-isotonik-4",
+      "name": "Pocari Sweat Minuman Isotonik 500Ml ",
+      "url": "https://www.klikindomaret.com/xpress/minuman-isotonik-4"
+    },
+    {
+      "plu": "20019179",
+      "permalink": "susu-encer-gold-2",
+      "name": "Bear Brand Gold Susu Steril Malt Putih 140mL",
+      "url": "https://www.klikindomaret.com/xpress/susu-encer-gold-2"
+    },
+    {
+      "plu": "10000859",
+      "permalink": "kecap-2",
+      "name": "Abc Kecap Manis 130mL",
+      "url": "https://www.klikindomaret.com/xpress/kecap-2"
+    },
+    {
+      "plu": "20043799",
+      "permalink": "sambal-25",
+      "name": "Abc Sambal Extra Pedas 380G",
+      "url": "https://www.klikindomaret.com/xpress/sambal-25"
+    },
+    {
+      "plu": "20037446",
+      "permalink": "detergent-cair--molto-28099",
+      "name": "Rinso,Deterjen Liquid + Molto Ref Rose Fresh 750/700G",
+      "url": "https://www.klikindomaret.com/xpress/detergent-cair--molto-28099"
+    },
+    {
+      "plu": "10013205",
+      "permalink": "sunlight-sunlight-cairan-pencuci-piring-675mL",
+      "name": "Sunlight Pencuci Piring Jeruk Nipis 675g",
+      "url": "https://www.klikindomaret.com/xpress/sunlight-sunlight-cairan-pencuci-piring-675mL"
+    },
+    {
+      "plu": "20059866",
+      "permalink": "sabun-mandi-multipack-45592",
+      "name": "Lifebuoy,Sabun Mandi Multipack Total 10 4X110g Bdd",
+      "url": "https://www.klikindomaret.com/xpress/sabun-mandi-multipack-45592"
+    },
+    {
+      "plu": "20047217",
+      "permalink": "pasta-gigi-74317",
+      "name": "Pepsodent Pasta Gigi White 225G",
+      "url": "https://www.klikindomaret.com/xpress/pasta-gigi-74317"
+    },
+    {
+      "plu": "10035165",
+      "permalink": "sandwich-oreo-2",
+      "name": "Oreo Biskuit Vanila 110.4G",
+      "url": "https://www.klikindomaret.com/xpress/sandwich-oreo-2"
+    },
+    {
+      "plu": "20141944",
+      "permalink": "chitato-chitato-snack-potato-chips-pck-62g-1",
+      "name": "Chitato Snack Potato Chips Rendang Sapi 62G",
+      "url": "https://www.klikindomaret.com/xpress/chitato-chitato-snack-potato-chips-pck-62g-1"
     }
   ]
 }
