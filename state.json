@@ -47,8 +47,8 @@
     },
     "10000181": {
       "status": "available",
-      "price": 112000,
-      "final_price": 56000,
+      "price": 109500,
+      "final_price": 54750,
       "discount_text": "50%",
       "qty_struk": 12,
       "name": "Bimoli Minyak Goreng 5000Ml",
@@ -57,6 +57,10 @@
         {
           "d": "2026-10-07",
           "p": 56000
+        },
+        {
+          "d": "2026-10-07",
+          "p": 54750
         }
       ]
     },
