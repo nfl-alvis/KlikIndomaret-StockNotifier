@@ -6,3 +6,5 @@ base.digests
 .env
 mitmproxy-ca-cert.cer
 *.flows
+.mitmconf/
+mitmweb.log
