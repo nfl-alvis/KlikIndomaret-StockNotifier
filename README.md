@@ -71,6 +71,18 @@ https://www.klikindomaret.com/xpress/{permalink}
 https://www.klikindomaret.com/xpress/{PLU}      # 307-redirects to the permalink URL
 ```
 
+### ⚠️ Dua Kanal KlikIndomaret (penting dipahami)
+
+KlikIndomaret menjalankan **dua kanal dagang dengan buku harga & stok berbeda** di atas harga dasar yang sama:
+
+| | **Xpress** (yang dipantau sistem ini) | **Retail** (yang tampil di aplikasi) |
+|---|---|---|
+| Pemenuhan | Gudang `TOKO XPRESS <kota>` (mis. TMLG) | Toko fisik (TKMD, TLO3, F64U, …) |
+| Contoh Sunco 2L | Rp 46.000 → **Rp 23.000** ("diskon 50%" = struktur harga permanen katalog Xpress, bukan promo) | Rp 46.000 → Rp 41.700 (diskon 9%) |
+| Akses API | Publik via `catalog-xpress` (gateway `ap-mc`) — dipantau sistem ini | Di dalam APK yang diproteksi DexProtector — tidak terjangkau API publik (probe `catalog`/`catalog-klik` = 404; `storeCode` diabaikan) |
+
+Kanal Xpress sering **jauh lebih murah** dari retail — sistem ini berguna menangkap harga & stoknya. Tapi jujur: **bukan** harga/stok toko retail yang Anda lihat di aplikasi, dan tidak ada API publik untuk itu.
+
 ### Anti-bot notes
 
 Burst requests without pauses trigger a Cloudflare 403. This poller enforces a minimum pause between requests (`request_delay_seconds`), a reasonable polling interval (`interval_seconds` + random jitter), and automatic backoff when failures start.

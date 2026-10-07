@@ -167,7 +167,7 @@ def format_message(
 
     lines += [
         "",
-        f"🏪 Area: {store} ({mode})",
+        f"🏪 Kanal: XPRESS {store} ({mode}) — harga & stok kanal Xpress, bukan harga toko retail",
         f"🔗 {url}",
         f"🔢 PLU: <code>{item.get('plu', '?')}</code>",
     ]
