@@ -130,8 +130,8 @@
     },
     "10017287": {
       "status": "available",
-      "price": 23500,
-      "final_price": 11750,
+      "price": 24600,
+      "final_price": 12300,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Telur Ayam Negeri Curah",
@@ -152,6 +152,10 @@
         {
           "d": "2026-10-10",
           "p": 11750
+        },
+        {
+          "d": "2026-10-11",
+          "p": 12300
         }
       ]
     },
