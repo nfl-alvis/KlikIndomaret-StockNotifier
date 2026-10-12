@@ -176,8 +176,8 @@
     },
     "10000426": {
       "status": "available",
-      "price": 7000,
-      "final_price": 3500,
+      "price": 6900,
+      "final_price": 3450,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Aqua Air Mineral 1500Ml",
@@ -190,6 +190,10 @@
         {
           "d": "2026-10-08",
           "p": 3500
+        },
+        {
+          "d": "2026-10-13",
+          "p": 3450
         }
       ]
     },
