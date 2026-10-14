@@ -351,13 +351,13 @@
       ]
     },
     "20019179": {
-      "status": "available",
+      "status": "unavailable",
       "price": 12200,
       "final_price": 6100,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Bear Brand Gold Susu Steril Malt Putih 140mL",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
