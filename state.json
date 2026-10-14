@@ -114,13 +114,13 @@
       ]
     },
     "20140674": {
-      "status": "available",
+      "status": "unavailable",
       "price": 14900,
       "final_price": 7450,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Sedaap Mie Mie Instant Ayam Bawang 5X71G",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
@@ -528,14 +528,14 @@
       "20141056",
       "20054184",
       "20104898",
-      "20133810",
-      "20133809",
       "20061785",
       "20000412",
       "20141513",
       "20095846",
       "20141277",
-      "20111559"
+      "20111559",
+      "20139555",
+      "20133888"
     ],
     "minyak goreng": [
       "20043713",
