@@ -303,8 +303,8 @@
     },
     "20076052": {
       "status": "available",
-      "price": 13000,
-      "final_price": 6500,
+      "price": 12800,
+      "final_price": 6400,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pucuk Harum Minuman Teh Melati 1.3L",
@@ -317,6 +317,10 @@
         {
           "d": "2026-10-08",
           "p": 6500
+        },
+        {
+          "d": "2026-10-15",
+          "p": 6400
         }
       ]
     },
@@ -472,8 +476,8 @@
     },
     "20141944": {
       "status": "available",
-      "price": 12000,
-      "final_price": 6000,
+      "price": 11900,
+      "final_price": 5950,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Chitato Snack Potato Chips Rendang Sapi 62G",
@@ -482,6 +486,10 @@
         {
           "d": "2026-10-07",
           "p": 6000
+        },
+        {
+          "d": "2026-10-15",
+          "p": 5950
         }
       ]
     },
