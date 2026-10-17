@@ -16,13 +16,13 @@
       ]
     },
     "20143145": {
-      "status": "available",
+      "status": "unavailable",
       "price": 149000,
       "final_price": 74500,
       "discount_text": "50%",
       "qty_struk": 2,
       "name": "Lahap Lele Beras Premium 10Kg",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
