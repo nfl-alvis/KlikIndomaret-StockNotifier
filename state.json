@@ -306,13 +306,13 @@
       ]
     },
     "20076052": {
-      "status": "available",
+      "status": "unavailable",
       "price": 12800,
       "final_price": 6400,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pucuk Harum Minuman Teh Melati 1.3L",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
@@ -453,13 +453,13 @@
       ]
     },
     "20047217": {
-      "status": "available",
+      "status": "unavailable",
       "price": 19500,
       "final_price": 9750,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pepsodent Pasta Gigi White 225G",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
