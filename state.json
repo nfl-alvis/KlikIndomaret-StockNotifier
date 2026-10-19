@@ -306,13 +306,13 @@
       ]
     },
     "20076052": {
-      "status": "unavailable",
+      "status": "available",
       "price": 12800,
       "final_price": 6400,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pucuk Harum Minuman Teh Melati 1.3L",
-      "selling": null,
+      "selling": true,
       "price_history": [
         {
           "d": "2026-10-07",
