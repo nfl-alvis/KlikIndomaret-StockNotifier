@@ -453,13 +453,13 @@
       ]
     },
     "20047217": {
-      "status": "unavailable",
+      "status": "available",
       "price": 19500,
       "final_price": 9750,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pepsodent Pasta Gigi White 225G",
-      "selling": null,
+      "selling": true,
       "price_history": [
         {
           "d": "2026-10-07",
