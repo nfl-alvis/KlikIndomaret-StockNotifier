@@ -311,8 +311,8 @@
     },
     "20076052": {
       "status": "available",
-      "price": 13000,
-      "final_price": 6500,
+      "price": 13200,
+      "final_price": 6600,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pucuk Harum Minuman Teh Melati 1.3L",
@@ -333,6 +333,10 @@
         {
           "d": "2026-10-22",
           "p": 6500
+        },
+        {
+          "d": "2026-10-24",
+          "p": 6600
         }
       ]
     },
@@ -353,8 +357,8 @@
     },
     "20009722": {
       "status": "available",
-      "price": 8500,
-      "final_price": 4250,
+      "price": 8900,
+      "final_price": 4450,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Pocari Sweat Minuman Isotonik 500Ml ",
@@ -363,6 +367,10 @@
         {
           "d": "2026-10-07",
           "p": 4250
+        },
+        {
+          "d": "2026-10-24",
+          "p": 4450
         }
       ]
     },
