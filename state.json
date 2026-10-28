@@ -296,8 +296,8 @@
     },
     "20031318": {
       "status": "available",
-      "price": 25300,
-      "final_price": 12650,
+      "price": 25500,
+      "final_price": 12750,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "Good Day Kopi Instant Cappuccino W/Coklat Granul 10X25g",
@@ -310,6 +310,10 @@
         {
           "d": "2026-10-15",
           "p": 12650
+        },
+        {
+          "d": "2026-10-29",
+          "p": 12750
         }
       ]
     },
