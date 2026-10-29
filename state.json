@@ -542,13 +542,13 @@
       ]
     },
     "20128719": {
-      "status": "unavailable",
+      "status": "available",
       "price": 9800,
       "final_price": 4900,
       "discount_text": "50%",
       "qty_struk": null,
       "name": "So Klin Softergent Powder Lavender & Lily 375G",
-      "selling": null,
+      "selling": true,
       "price_history": [
         {
           "d": "2026-10-07",
