@@ -330,8 +330,8 @@
     },
     "20140181": {
       "status": "available",
-      "price": 42500,
-      "final_price": 42500,
+      "price": 41900,
+      "final_price": 41900,
       "discount_text": null,
       "qty_struk": null,
       "name": "Kapal Api Kopi Bubuk Special Merah 250G",
@@ -344,6 +344,10 @@
         {
           "d": "2026-11-02",
           "p": 42500
+        },
+        {
+          "d": "2026-11-03",
+          "p": 41900
         }
       ]
     },
