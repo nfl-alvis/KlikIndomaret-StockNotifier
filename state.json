@@ -146,13 +146,13 @@
       ]
     },
     "20140674": {
-      "status": "available",
+      "status": "unavailable",
       "price": 15400,
       "final_price": 15400,
       "discount_text": null,
       "qty_struk": null,
       "name": "Sedaap Mie Mie Instant Ayam Bawang 5X71G",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
