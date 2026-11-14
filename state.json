@@ -556,13 +556,13 @@
       ]
     },
     "20037446": {
-      "status": "unavailable",
+      "status": "available",
       "price": 17500,
       "final_price": 17500,
       "discount_text": null,
       "qty_struk": null,
       "name": "Rinso,Deterjen Liquid + Molto Ref Rose Fresh 750/700G",
-      "selling": null,
+      "selling": true,
       "price_history": [
         {
           "d": "2026-10-07",
