@@ -431,8 +431,8 @@
     },
     "20076052": {
       "status": "available",
-      "price": 13300,
-      "final_price": 13300,
+      "price": 12800,
+      "final_price": 12800,
       "discount_text": null,
       "qty_struk": null,
       "name": "Pucuk Harum Minuman Teh Melati 1.3L",
@@ -465,6 +465,10 @@
         {
           "d": "2026-11-02",
           "p": 13300
+        },
+        {
+          "d": "2026-11-19",
+          "p": 12800
         }
       ]
     },
@@ -790,5 +794,8 @@
   },
   "bot": {
     "last_update_id": 52028084
-  }
+  },
+  "missed": [
+    "💰 <b>HARGA TURUN!</b>\n\n📦 <b>Pucuk Harum Minuman Teh Melati 1.3L</b>\n💵 Harga: <b>Rp 12.800</b>\n⬇️ Sebelumnya: Rp 13.300\n\n🏪 Kanal: XPRESS TMLG (DELIVERY) — harga & stok kanal Xpress, bukan harga toko retail\n🔗 https://www.klikindomaret.com/xpress/minuman-teh-34\n🔢 PLU: <code>20076052</code>"
+  ]
 }
