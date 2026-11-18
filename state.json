@@ -706,13 +706,13 @@
       ]
     },
     "20128719": {
-      "status": "available",
+      "status": "unavailable",
       "price": 9800,
       "final_price": 9800,
       "discount_text": null,
       "qty_struk": null,
       "name": "So Klin Softergent Powder Lavender & Lily 375G",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
@@ -782,13 +782,17 @@
       "10008989",
       "10012338",
       "20016512",
-      "20140913",
       "10008469",
       "20077116",
-      "20006644"
+      "20006644",
+      "20018272"
     ]
   },
   "bot": {
     "last_update_id": 52028084
-  }
+  },
+  "missed": [
+    "🔴 <b>STOK HABIS</b>\n\n📦 <b>So Klin Softergent Powder Lavender &amp; Lily 375G</b>\n💵 Harga terakhir: Rp 9.800\n\n🏪 Kanal: XPRESS TMLG (DELIVERY) — harga & stok kanal Xpress, bukan harga toko retail\n🔗 https://www.klikindomaret.com/xpress/softergent-powder-12\n🔢 PLU: <code>20128719</code>",
+    "🆕 <b>Produk baru di 'minyak goreng':</b>\n• Ikan Dorang Minyak Kelapa Special 950mL — Rp 55.900"
+  ]
 }
