@@ -146,13 +146,13 @@
       ]
     },
     "20140674": {
-      "status": "available",
+      "status": "unavailable",
       "price": 15400,
       "final_price": 15400,
       "discount_text": null,
       "qty_struk": null,
       "name": "Sedaap Mie Mie Instant Ayam Bawang 5X71G",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
@@ -687,13 +687,13 @@
       ]
     },
     "20141944": {
-      "status": "available",
+      "status": "unavailable",
       "price": 11900,
       "final_price": 11900,
       "discount_text": null,
       "qty_struk": null,
       "name": "Chitato Snack Potato Chips Rendang Sapi 62G",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
@@ -794,10 +794,10 @@
       "10008989",
       "10012338",
       "20016512",
+      "20140913",
       "10008469",
       "20077116",
-      "20006644",
-      "20018272"
+      "20006644"
     ]
   },
   "bot": {
