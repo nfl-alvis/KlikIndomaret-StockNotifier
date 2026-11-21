@@ -687,13 +687,13 @@
       ]
     },
     "20141944": {
-      "status": "unavailable",
+      "status": "available",
       "price": 11900,
       "final_price": 11900,
       "discount_text": null,
       "qty_struk": null,
       "name": "Chitato Snack Potato Chips Rendang Sapi 62G",
-      "selling": null,
+      "selling": true,
       "price_history": [
         {
           "d": "2026-10-07",
