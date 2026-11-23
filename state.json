@@ -496,13 +496,13 @@
       ]
     },
     "20009722": {
-      "status": "available",
+      "status": "unavailable",
       "price": 8900,
       "final_price": 8900,
       "discount_text": null,
       "qty_struk": null,
       "name": "Pocari Sweat Minuman Isotonik 500Ml ",
-      "selling": true,
+      "selling": null,
       "price_history": [
         {
           "d": "2026-10-07",
