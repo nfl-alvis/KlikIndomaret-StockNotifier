@@ -1,13 +1,13 @@
 {
   "products": {
     "20142264": {
-      "status": "unavailable",
+      "status": "available",
       "price": 74500,
       "final_price": 74500,
       "discount_text": null,
       "qty_struk": 2,
       "name": "Lahap Lele Beras Premium 5Kg",
-      "selling": null,
+      "selling": true,
       "price_history": [
         {
           "d": "2026-10-07",
@@ -763,6 +763,7 @@
       "20131787",
       "20127565",
       "20097275",
+      "20142264",
       "20142006",
       "20141056",
       "20140704",
@@ -774,8 +775,7 @@
       "20000412",
       "20141513",
       "20095846",
-      "20139555",
-      "20103313"
+      "20139555"
     ],
     "minyak goreng": [
       "20043713",
